@@ -10,7 +10,7 @@ public class PlayerCharacter : MonoBehaviour {
     private int lives = 3;
 
     [SerializeField]
-    private string name = "Mario";
+    private string Name = "Mario";
     [SerializeField]
     private float jumpHeight = 5, speed = 5;
     
