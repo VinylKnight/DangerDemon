@@ -6,19 +6,15 @@ public class PlayerCharacter : MonoBehaviour {
 
 
 
+   
     [SerializeField]
-    private int lives = 3;
-    [SerializeField]
-    private string Name = "Mario";
-    [SerializeField]
-    private float jumpHeight = 5, accelerationForce = 5;
+    private float accelerationForce = 5;
     [SerializeField]
     private Rigidbody2D rigidbody2DInstance;
     [SerializeField]
     private float maxSpeed = 5;
 
-    private bool hasKey;
-    private bool isOnGround;
+    
     private float horizontalInput;
 
     
@@ -58,7 +54,7 @@ public class PlayerCharacter : MonoBehaviour {
         Vector2 clampedVelocity = rigidbody2DInstance.velocity;
         clampedVelocity = Mathf.Clamp(rigidbody2DInstance.velocity.x, -maxSpeed, maxSpeed);
         rigidbody2DInstance.velocity = clampedVelocity;
-
+        
 
     }
 
