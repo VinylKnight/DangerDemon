@@ -249,7 +249,9 @@ MonoBehaviour:
   lives: 3
   name: Mario
   jumpHeight: 5
-  speed: 5
+  accelerationForce: 5
+  rigidbody2DInstance: {fileID: 65997373}
+  maxSpeed: 5
 --- !u!1001 &303253380
 Prefab:
   m_ObjectHideFlags: 0
