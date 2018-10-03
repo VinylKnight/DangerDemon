@@ -29,30 +29,16 @@ public class PlayerCharacter : MonoBehaviour {
 	void Update () {
 
         //transform.Translate( 0, -.01f,  0); not physics based do not use
-        //GetInput();
-        //Move();
+       
         horizontalInput = Input.GetAxis("Horizontal");
 	}
 
-    //private void GetInput()
-    //{
-
-    //    float horizontalInput = Input.GetAxis("Horizontal");
-
-
-    //}
-
-    //private void Move()
-    //{
-    //    rigidbody2DInstance.velocity = new Vector2(horizontalInput, -1);
-        
-
-    //}
+   
     private void FixedUpdate()
     {
         rigidbody2DInstance.AddForce(Vector2.right * horizontalInput * accelerationForce);
         Vector2 clampedVelocity = rigidbody2DInstance.velocity;
-        clampedVelocity = Mathf.Clamp(rigidbody2DInstance.velocity.x, -maxSpeed, maxSpeed);
+        clampedVelocity.x = Mathf.Clamp(rigidbody2DInstance.velocity.x, -maxSpeed, maxSpeed);
         rigidbody2DInstance.velocity = clampedVelocity;
         
 
