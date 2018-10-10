@@ -141,7 +141,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 65997371}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: ff1703cb30515e4459491d8c6ce88851, type: 2}
+  m_Material: {fileID: 6200000, guid: 9a937a08a9e20634d8989bb70ce1866a, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -230,7 +230,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 65997371}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.29, y: 0.4796952, z: 0}
+  m_LocalPosition: {x: 1.54, y: 0.4796952, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -265,6 +265,12 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
+  groundDetectTrigger: {fileID: 65997377}
+  playerMovingPhysicsMaterial: {fileID: 6200000, guid: 9a937a08a9e20634d8989bb70ce1866a,
+    type: 2}
+  playerStoppingPhysicsMaterial: {fileID: 6200000, guid: 66a362197d8617a4080ff238dc4b267f,
+    type: 2}
+  playerGroundCollider: {fileID: 65997372}
 --- !u!58 &65997377
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -289,11 +295,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4729608052546692, guid: b0df95cb33060ca4f97ffedf485e8b99, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -1.5
+      value: -2.5
       objectReference: {fileID: 0}
     - target: {fileID: 4729608052546692, guid: b0df95cb33060ca4f97ffedf485e8b99, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -1.25
+      value: -1.5
       objectReference: {fileID: 0}
     - target: {fileID: 4729608052546692, guid: b0df95cb33060ca4f97ffedf485e8b99, type: 2}
       propertyPath: m_LocalPosition.z
@@ -389,7 +395,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.36, y: 0, z: -10}
+  m_LocalPosition: {x: 2.36, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -704,7 +710,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4852707383582522, guid: 08ea05a0d2cf3ff46bf99a5e9f2f7317, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0.5
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4852707383582522, guid: 08ea05a0d2cf3ff46bf99a5e9f2f7317, type: 2}
       propertyPath: m_LocalPosition.y

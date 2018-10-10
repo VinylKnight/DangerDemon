@@ -17,10 +17,17 @@ public class PlayerCharacter : MonoBehaviour {
     private float jumpForce = 5;
     [SerializeField]
     private ContactFilter2D groundContactFilter;
+    [SerializeField]
+    private Collider2D groundDetectTrigger;
+    [SerializeField]
+    private PhysicsMaterial2D playerMovingPhysicsMaterial, playerStoppingPhysicsMaterial;
+    [SerializeField]
+    private Collider2D playerGroundCollider;
 
     private bool isOnGround;
 
     private float horizontalInput;
+    private Collider2D[] groundContactDetectionResults = new Collider2D[16];
 
 	// Update is called once per frame
 	void Update ()
@@ -28,18 +35,48 @@ public class PlayerCharacter : MonoBehaviour {
         //transform.Translate( 0, -.01f,  0); not physics based do not use
 
         UpdateHorizontalInput();
+        UpdateIsOnGround();
         HandleJumpInput();
+        UpdatePhysicsMaterial();
+
+    }
+    private void FixedUpdate()
+    {
+        Move();
+
+    }
+    private void UpdatePhysicsMaterial()
+    {
+
+        if (Mathf.Abs(horizontalInput) > 0)
+        {
+
+            playerGroundCollider.sharedMaterial = playerMovingPhysicsMaterial;
+        }
+        else
+        {
+
+            playerGroundCollider.sharedMaterial = playerStoppingPhysicsMaterial;
+
+
+        }
+
+    }
+    private void UpdateIsOnGround()
+    {
+
+      isOnGround = groundDetectTrigger.OverlapCollider(groundContactFilter, groundContactDetectionResults) > 0;
 
     }
 
     private void UpdateHorizontalInput()
     {
-        horizontalInput = Input.GetAxis("Horizontal");
+        horizontalInput = Input.GetAxisRaw("Horizontal");
     }
 
     private void HandleJumpInput()
     {
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && isOnGround)
         {
 
 
@@ -48,11 +85,6 @@ public class PlayerCharacter : MonoBehaviour {
         }
     }
 
-    private void FixedUpdate()
-    {
-        Move();
-
-    }
 
     private void Move()
     {
