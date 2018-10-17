@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class Checkpoint : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+
+            PlayerCharacter player = collision.GetComponent<PlayerCharacter>();
+            player.SetCurrentCheckpoint(this);
+
+        }
+       
+    }
+
+
 }
