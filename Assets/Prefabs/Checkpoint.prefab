@@ -78,6 +78,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8203a71d9f483f24aa19022436a000a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inactiveRotationSpeed: 100
+  activeRotationSpeed: 200
+  inactiveScale: 1
+  activeScale: 1.5
+  inactiveColor: {r: 1, g: 0, b: 0.8135681, a: 0.4117647}
+  activeColor: {r: 1, g: 0, b: 0.8135681, a: 1}
 --- !u!212 &212390061072862712
 SpriteRenderer:
   m_ObjectHideFlags: 1
