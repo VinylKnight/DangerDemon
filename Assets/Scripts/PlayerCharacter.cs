@@ -5,9 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class PlayerCharacter : MonoBehaviour {
 
-
-
-   
     [SerializeField]
     private float accelerationForce = 5;
     [SerializeField]
@@ -25,13 +22,20 @@ public class PlayerCharacter : MonoBehaviour {
     [SerializeField]
     private Collider2D playerGroundCollider;
 
+    private bool isFacingRight;
     private bool isOnGround;
     private float horizontalInput;
     private Checkpoint currentCheckpoint;
     private Collider2D[] groundContactDetectionResults = new Collider2D[16];
 
-	// Update is called once per frame
-	void Update ()
+    Animator anim;
+
+     void Start()
+     {
+        anim = GetComponent<Animator>();
+     }
+    // Update is called once per frame
+    void Update ()
     {
         //transform.Translate( 0, -.01f,  0); not physics based do not use
 
@@ -73,6 +77,7 @@ public class PlayerCharacter : MonoBehaviour {
     private void UpdateHorizontalInput()
     {
         horizontalInput = Input.GetAxisRaw("Horizontal");
+        anim.SetFloat("Speed", Mathf.Abs(horizontalInput));
     }
 
     private void HandleJumpInput()
@@ -93,6 +98,10 @@ public class PlayerCharacter : MonoBehaviour {
         Vector2 clampedVelocity = rigidbody2DInstance.velocity;
         clampedVelocity.x = Mathf.Clamp(rigidbody2DInstance.velocity.x, -maxSpeed, maxSpeed);
         rigidbody2DInstance.velocity = clampedVelocity;
+        if (horizontalInput < 0 && !isFacingRight)
+            Flip();
+        else if (horizontalInput > 0 && isFacingRight)
+            Flip();
     }
     public void Respawn()
     {
@@ -115,6 +124,14 @@ public class PlayerCharacter : MonoBehaviour {
 
         currentCheckpoint = newCurrentCheckpoint;
         currentCheckpoint.SetIsActivated(true);
+
+    }
+    void Flip()
+    {
+        isFacingRight = !isFacingRight;
+        Vector3 theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;
 
     }
 }
