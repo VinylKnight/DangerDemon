@@ -87,7 +87,8 @@ public class PlayerCharacter : MonoBehaviour {
 
 
             rigidbody2DInstance.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-
+            anim.SetTrigger("isJumping");
+            
         }
     }
 
@@ -107,8 +108,9 @@ public class PlayerCharacter : MonoBehaviour {
     {
         if (currentCheckpoint == null)
         {
+             
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-
+           
         }
         else {
 
