@@ -60,7 +60,7 @@ public class Climbing : MonoBehaviour {
 
         if (isOnLadder == true)
         {
-            //rigidbody2DInstance.gravityScale = 0.5f;
+            rigidbody2DInstance.gravityScale = 0f;
             rigidbody2DInstance.velocity = Vector2.zero;
             rigidbody2DInstance.AddForce(Vector2.up * verticalInput * ClimbingForce);
             Vector2 clampedVelocity = rigidbody2DInstance.velocity;
