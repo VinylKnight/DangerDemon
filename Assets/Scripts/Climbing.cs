@@ -11,35 +11,26 @@ public class Climbing : MonoBehaviour {
     private float maxClimbSpeed = 5;
     [SerializeField]
      private Animator anim;
-
-
    
     private float verticalInput;
     private bool isOnLadder;
-    // Use this for initialization
-
-   
+ 
     // Update is called once per frame
-    void Update () {
-        UpdateVerticalInput();
-       
-       
+    void Update ()
+    {
+        UpdateVerticalInput();       
 	}
     void FixedUpdate()
     {
-
         Climb();
-
-
     }
      private void OnTriggerEnter2D(Collider2D collision)
-    {
+     {
         if (collision.CompareTag("Player"))
         {
-
             isOnLadder = true;
         }
-    }
+     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
@@ -52,12 +43,10 @@ public class Climbing : MonoBehaviour {
    
     private void UpdateVerticalInput()
     {
-        verticalInput = Input.GetAxisRaw("Vertical");
-        
+        verticalInput = Input.GetAxisRaw("Vertical");   
     }
     private void Climb()
     {
-
         if (isOnLadder == true)
         {
             rigidbody2DInstance.gravityScale = 0f;
@@ -67,10 +56,6 @@ public class Climbing : MonoBehaviour {
             clampedVelocity.y = Mathf.Clamp(rigidbody2DInstance.velocity.y, -maxClimbSpeed, maxClimbSpeed);
             rigidbody2DInstance.velocity = clampedVelocity;
             anim.SetFloat("ClimbSpeed", Mathf.Abs(verticalInput));
-
-
-
         }
-
     }
 }

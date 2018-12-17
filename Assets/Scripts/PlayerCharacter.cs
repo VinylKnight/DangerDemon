@@ -38,40 +38,29 @@ public class PlayerCharacter : MonoBehaviour {
     void Update ()
     {
         //transform.Translate( 0, -.01f,  0); not physics based do not use
-
         UpdateHorizontalInput();
         UpdateIsOnGround();
         HandleJumpInput();
         UpdatePhysicsMaterial();
-
     }
     private void FixedUpdate()
     {
         Move();
-
     }
     private void UpdatePhysicsMaterial()
     {
-
         if (Mathf.Abs(horizontalInput) > 0)
         {
-
             playerGroundCollider.sharedMaterial = playerMovingPhysicsMaterial;
         }
         else
         {
-
             playerGroundCollider.sharedMaterial = playerStoppingPhysicsMaterial;
-
-
         }
-
     }
     private void UpdateIsOnGround()
     {
-
       isOnGround = groundDetectTrigger.OverlapCollider(groundContactFilter, groundContactDetectionResults) > 0;
-
     }
 
     private void UpdateHorizontalInput()
@@ -84,11 +73,8 @@ public class PlayerCharacter : MonoBehaviour {
     {
         if (Input.GetButtonDown("Jump") && isOnGround)
         {
-
-
             rigidbody2DInstance.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-            anim.SetTrigger("isJumping");
-            
+            anim.SetTrigger("isJumping");            
         }
     }
 
@@ -107,15 +93,13 @@ public class PlayerCharacter : MonoBehaviour {
     public void Respawn()
     {
         if (currentCheckpoint == null)
-        {
-             
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-           
+        {     
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);           
         }
-        else {
-
-        rigidbody2DInstance.velocity = Vector2.zero;
-        transform.position = currentCheckpoint.transform.position;
+        else
+        {
+         rigidbody2DInstance.velocity = Vector2.zero;
+         transform.position = currentCheckpoint.transform.position;
         }
     }
     public void SetCurrentCheckpoint(Checkpoint newCurrentCheckpoint)
@@ -123,10 +107,8 @@ public class PlayerCharacter : MonoBehaviour {
         if(currentCheckpoint != null)
            currentCheckpoint.SetIsActivated(false);
 
-
         currentCheckpoint = newCurrentCheckpoint;
         currentCheckpoint.SetIsActivated(true);
-
     }
     void Flip()
     {
@@ -134,6 +116,5 @@ public class PlayerCharacter : MonoBehaviour {
         Vector3 theScale = transform.localScale;
         theScale.x *= -1;
         transform.localScale = theScale;
-
     }
 }
