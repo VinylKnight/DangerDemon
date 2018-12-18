@@ -25,7 +25,7 @@ public class Doors : MonoBehaviour {
     }
     private void Update()
     {
-        if (Input.GetButtonDown("Activate") && isPlayerInTrigger)
+        if (Input.GetButtonDown("Vertical") && isPlayerInTrigger)
         {
 
             SceneManager.LoadScene(sceneToLoad);
