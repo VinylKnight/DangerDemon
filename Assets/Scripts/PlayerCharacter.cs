@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerCharacter : MonoBehaviour
 {
@@ -22,10 +23,17 @@ public class PlayerCharacter : MonoBehaviour
     private PhysicsMaterial2D playerMovingPhysicsMaterial, playerStoppingPhysicsMaterial;
     [SerializeField]
     private Collider2D playerGroundCollider;
+    [SerializeField]
+    private Text carrotCount;
+    [SerializeField]
+    private AudioClip jumpSound, collectableSound;
 
+    public bool collectedNewCarrot;
+    public int carrotsCollected = 0;
     private bool isFacingRight;
     private bool isOnGround;
     private float horizontalInput;
+    private AudioSource audioSource;
     private Checkpoint currentCheckpoint;
     private Collider2D[] groundContactDetectionResults = new Collider2D[16];
 
@@ -34,6 +42,7 @@ public class PlayerCharacter : MonoBehaviour
      void Start()
      {
         anim = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
      }
     // Update is called once per frame
     void Update ()
@@ -43,10 +52,22 @@ public class PlayerCharacter : MonoBehaviour
         UpdateIsOnGround();
         HandleJumpInput();
         UpdatePhysicsMaterial();
+        UpdateCarrotCount();
     }
     private void FixedUpdate()
     {
         Move();
+    }
+    private void UpdateCarrotCount()
+    {
+        carrotCount.text = "Carrots : " + carrotsCollected;
+        if (collectedNewCarrot == true)
+        {
+            audioSource.clip = collectableSound;
+            audioSource.Play();
+            collectedNewCarrot = false;
+        }
+        
     }
     private void UpdatePhysicsMaterial()
     {
@@ -75,7 +96,9 @@ public class PlayerCharacter : MonoBehaviour
         if (Input.GetButtonDown("Jump") && isOnGround)
         {
             rigidbody2DInstance.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-            anim.SetTrigger("isJumping");            
+            anim.SetTrigger("isJumping");
+            audioSource.clip = jumpSound;
+            audioSource.Play();
         }
     }
 
@@ -95,7 +118,7 @@ public class PlayerCharacter : MonoBehaviour
     {
         if (currentCheckpoint == null)
         {     
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);           
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);     
         }
         else
         {
