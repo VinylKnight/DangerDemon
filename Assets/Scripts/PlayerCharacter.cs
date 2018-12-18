@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayerCharacter : MonoBehaviour {
+public class PlayerCharacter : MonoBehaviour
+{
 
     [SerializeField]
     private float accelerationForce = 5;
